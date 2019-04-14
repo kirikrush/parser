@@ -5,7 +5,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>SheetJS Live Demo</title>
+	<title>Парсер кадастровых карт</title>
 	<style>
 		#drop {
 			border: 2px dashed #bbb;
@@ -32,7 +32,7 @@
 
 <body>
 
-	<div id="drop">Перетащите сюда файл Excell</div>
+	<div id="drop">Перетащите сюда файл Excell. После загрузки и обработки адресов скачивание начнется автоматически</div>
 	<input type="file" name="xlfile" id="xlf" /> 
 	<pre id="out" style="display: none"></pre>
 	<div id="htmlout" style="display: none"><b>Advanced Demo Options:</b>
@@ -265,6 +265,7 @@
 	</script>
 	<script>
 		function parseData(data) {
+			$("#drop").text("Обработка...");
 			let mas = data.split("\n");
 			console.log(mas);
 			let x = 0;
@@ -288,6 +289,7 @@
 						})
 					}
 					else{
+						$("#drop").text("Обработка завершена");
 						$(".response table").table2excel({
 			filename: "SomeFile" //do not include extension
 		});
